@@ -1,0 +1,16 @@
+using UnityEngine;
+using UnityEngine.Events;
+
+[CreateAssetMenu(fileName = "Events", menuName = "Events/Void Event", order = 0)]
+public class VoidEvent : ScriptableObjectBase {
+    public UnityAction onEventRaised;
+    public void RaiseEvent() {
+        onEventRaised?.Invoke();
+    }
+    public void Subscribe(UnityAction function) {
+        onEventRaised += function;
+    }
+    public void Unsubscribe(UnityAction function) {
+        onEventRaised -= function;
+    }
+}
