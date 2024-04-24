@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,5 +22,13 @@ public class ProjectileAmmo : Ammo
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.TryGetComponent(out Enemy enemy))
+        {
+            enemy.ApplyDamage(10);
+        }
     }
 }

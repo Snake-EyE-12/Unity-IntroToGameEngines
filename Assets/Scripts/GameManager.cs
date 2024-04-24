@@ -33,7 +33,7 @@ public class GameManager : Singleton<GameManager>
 
     private Transform startingLocation;
     private void Start() {
-        startingLocation = respawn.transform;
+        //startingLocation = respawn.transform;
     }
     
     public enum State
@@ -64,10 +64,13 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void OnPlayerDied() {
-        Lives--;
-        if(Lives == 0) ChangeState(State.Over);
-        else ChangeState(State.Reset);
         
+        gameOverUI.SetActive(true);
+        finalScoreUI.text = "Final Score: " + score;
+        // Lives--;
+        // if(Lives == 0) ChangeState(State.Over);
+        // else ChangeState(State.Reset);
+
     }
     public void OnStartGame() {
         ChangeState(State.Start);
@@ -75,12 +78,13 @@ public class GameManager : Singleton<GameManager>
 
     }
     public void OnAddPoints(int points) {
-        Score += points;
+        score += points;
+        scoreUI.text = score.ToString();
     }
 
     private void Update() {
 
-        healthUI.value = health.value / 100.0f;
+        //healthUI.value = health.value / 100.0f;
         if(Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
         }
@@ -90,8 +94,8 @@ public class GameManager : Singleton<GameManager>
         switch(currentState) {
             case State.Title: {
                 if(true) {
-                    titleUI.SetActive(true);
-                    hudUI.SetActive(true);
+                    //titleUI.SetActive(true);
+                    //hudUI.SetActive(true);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
